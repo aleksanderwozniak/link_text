@@ -1,6 +1,6 @@
-# example
+# Link Text example
 
-A new Flutter project.
+Demonstrates how to use link_text package.
 
 ## Getting Started
 

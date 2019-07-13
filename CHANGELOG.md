@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0] - Initial release
 
-* TODO: Describe initial release.
+* Fully working LinkText widget - easily convert inlined urls into clickable links
+* Example project included
