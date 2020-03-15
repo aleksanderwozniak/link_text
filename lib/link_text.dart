@@ -28,8 +28,8 @@ class LinkText extends StatefulWidget {
 
 class _LinkTextState extends State<LinkText> {
   List<TapGestureRecognizer> _gestureRecognizers;
-  final RegExp _regex =
-      RegExp(r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)");
+  final RegExp _regex = RegExp(
+      r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\,+.~#?&//=]*)");
 
   @override
   void initState() {
@@ -56,7 +56,10 @@ class _LinkTextState extends State<LinkText> {
     final themeData = Theme.of(context);
     final textStyle = this.widget.textStyle ?? themeData.textTheme.body1;
     final linkStyle = this.widget.linkStyle ??
-        themeData.textTheme.body1.copyWith(color: themeData.accentColor, decoration: TextDecoration.underline);
+        themeData.textTheme.body1.copyWith(
+          color: themeData.accentColor,
+          decoration: TextDecoration.underline,
+        );
 
     final links = _regex.allMatches(widget.text);
 
@@ -76,11 +79,13 @@ class _LinkTextState extends State<LinkText> {
         final recognizer = TapGestureRecognizer()..onTap = () => _launchUrl(link);
 
         _gestureRecognizers.add(recognizer);
-        textSpans.add(TextSpan(
-          text: link,
-          style: linkStyle,
-          recognizer: recognizer,
-        ));
+        textSpans.add(
+          TextSpan(
+            text: link,
+            style: linkStyle,
+            recognizer: recognizer,
+          ),
+        );
 
         i++;
       }
