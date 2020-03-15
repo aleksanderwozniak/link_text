@@ -8,7 +8,7 @@ Easy to use text widget for Flutter apps, which converts inlined urls into worki
 
 ## Usage
 
-**Link Text** widget requires no setup. Just simply pass a `String` with inlined urls, and the widget will take care of the rest.
+**Link Text** widget requires no setup. Just simply pass a `String` with inlined URLs, and the widget will take care of the rest.
 
 ```dart
 final String _text = 'Lorem ipsum https://flutter.dev\nhttps://pub.dev';
@@ -32,6 +32,6 @@ Add to pubspec.yaml:
 
 ```yaml
 dependencies:
-  link_text: ^0.1.1
+  link_text: ^0.1.2
 ```
 For more info, check out [example project](https://github.com/aleksanderwozniak/link_text/tree/master/example).

@@ -1,3 +1,7 @@
+## [0.1.2]
+
+* LinkText widget now handles URLs which include commas
+
 ## [0.1.1]
 
 * Improved README
