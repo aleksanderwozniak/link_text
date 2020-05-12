@@ -7,11 +7,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+typedef LinkTapHandler = void Function(String);
+
 class LinkText extends StatefulWidget {
   final String text;
   final TextStyle textStyle;
   final TextStyle linkStyle;
   final TextAlign textAlign;
+  final LinkTapHandler onLinkTap;
 
   const LinkText({
     Key key,
@@ -19,6 +22,7 @@ class LinkText extends StatefulWidget {
     this.textStyle,
     this.linkStyle,
     this.textAlign = TextAlign.start,
+    this.onLinkTap,
   })  : assert(text != null),
         super(key: key);
 
@@ -44,6 +48,11 @@ class _LinkTextState extends State<LinkText> {
   }
 
   void _launchUrl(String url) async {
+    if (widget.onLinkTap != null) {
+      widget.onLinkTap(url);
+      return;
+    }
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
