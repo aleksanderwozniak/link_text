@@ -76,7 +76,8 @@ class _LinkTextState extends State<LinkText> {
 
       if (i < links.length) {
         final link = links.elementAt(i).group(0);
-        final recognizer = TapGestureRecognizer()..onTap = () => _launchUrl(link);
+        final recognizer = TapGestureRecognizer()
+          ..onTap = () => _launchUrl(link);
 
         _gestureRecognizers.add(recognizer);
         textSpans.add(
