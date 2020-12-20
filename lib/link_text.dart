@@ -7,12 +7,22 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Easy to use text widget, which converts inlined urls into clickable links.
+/// Allows custom styling.
 class LinkText extends StatefulWidget {
+  /// Text, which may contain inlined urls.
   final String text;
+
+  /// Style of the non-url part of supplied text.
   final TextStyle textStyle;
+
+  /// Style of the url part of supplied text.
   final TextStyle linkStyle;
+
+  /// Determines how the text is aligned.
   final TextAlign textAlign;
 
+  /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
     Key key,
     @required this.text,
