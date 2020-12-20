@@ -2,7 +2,7 @@
 
 [![Pub Package](https://img.shields.io/pub/v/link_text.svg?style=flat-square)](https://pub.dartlang.org/packages/link_text)
 
-Easy to use text widget for Flutter apps, which converts inlined urls into working, clickable links. Allows for custom styling.
+Easy to use text widget for Flutter apps, which converts inlined urls into working, clickable links. Allows custom styling.
 
 ![Image](https://raw.githubusercontent.com/aleksanderwozniak/link_text/assets/link_text_demo.png)
 
@@ -32,6 +32,6 @@ Add to pubspec.yaml:
 
 ```yaml
 dependencies:
-  link_text: ^0.1.3
+  link_text: ^0.1.4
 ```
 For more info, check out [example project](https://github.com/aleksanderwozniak/link_text/tree/master/example).

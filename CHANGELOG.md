@@ -1,3 +1,9 @@
+## [0.1.4]
+
+* Migrated to AndroidX
+* Added documentation
+* Replaced deprecated TextStyles
+
 ## [0.1.3]
 
 * Replaced RichText widget with Text.rich()
