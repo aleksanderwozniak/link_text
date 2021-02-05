@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final String _text =
-      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https://google.com sit amet';
+      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https://www.google.de/search?q=flutter+&oq=flutter sit amet';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
               _buildNormalText(),
               const SizedBox(height: 64.0),
               _buildLinkText(),
+              const SizedBox(height: 64.0),
+              _buildLinkTextShortened(),
               const SizedBox(height: 24.0),
             ],
           ),
@@ -82,6 +84,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         const SizedBox(height: 12.0),
         LinkText(text: _text, textAlign: TextAlign.center),
+      ],
+    );
+  }
+
+  Widget _buildLinkTextShortened() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(
+          'LinkText Widget with disabled URL parameters',
+          textAlign: TextAlign.center,
+          style: TextStyle().copyWith(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 12.0),
+        LinkText(text: _text, textAlign: TextAlign.center, trimParams: true,),
       ],
     );
   }

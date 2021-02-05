@@ -22,6 +22,11 @@ class LinkText extends StatefulWidget {
   /// Determines how the text is aligned.
   final TextAlign textAlign;
 
+  /// if true it will cut off all visible links after '?'.
+  /// This is only for better readability. When executing the url
+  /// the link with all params stays the same.
+  final bool trimParams;
+
   /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
     Key key,
@@ -29,6 +34,7 @@ class LinkText extends StatefulWidget {
     this.textStyle,
     this.linkStyle,
     this.textAlign = TextAlign.start,
+    this.trimParams = false,
   })  : assert(text != null),
         super(key: key);
 
@@ -40,6 +46,8 @@ class _LinkTextState extends State<LinkText> {
   List<TapGestureRecognizer> _gestureRecognizers;
   final RegExp _regex = RegExp(
       r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\,+.~#?&//=]*)");
+
+  final _shortenRegex = RegExp(r"(.*)\?");
 
   @override
   void initState() {
@@ -86,13 +94,19 @@ class _LinkTextState extends State<LinkText> {
 
       if (i < links.length) {
         final link = links.elementAt(i).group(0);
+        var newLinkText;
+
         final recognizer = TapGestureRecognizer()
           ..onTap = () => _launchUrl(link);
+
+        if (widget.trimParams) {
+          newLinkText = _shortenRegex.firstMatch(link)?.group(1);
+        }
 
         _gestureRecognizers.add(recognizer);
         textSpans.add(
           TextSpan(
-            text: link,
+            text: newLinkText ?? link,
             style: linkStyle,
             recognizer: recognizer,
           ),
