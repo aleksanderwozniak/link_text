@@ -20,7 +20,7 @@ Widget build(BuildContext context) {
       child: LinkText(
         text: _text,
         textAlign: TextAlign.center,
-        // you can handle link click event by your self, this is optional
+        // You can optionally handle link tap event by yourself
         // onLinkTap: (url) => ...
       ),
     ),

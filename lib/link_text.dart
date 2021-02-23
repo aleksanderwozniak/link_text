@@ -7,8 +7,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-typedef LinkTapHandler = void Function(String);
-
 /// Easy to use text widget, which converts inlined urls into clickable links.
 /// Allows custom styling.
 class LinkText extends StatefulWidget {
@@ -23,8 +21,10 @@ class LinkText extends StatefulWidget {
 
   /// Determines how the text is aligned.
   final TextAlign textAlign;
-  
-  final LinkTapHandler onLinkTap;
+
+  /// Overrides default behavior when tapping on links.
+  /// Provides the url that was tapped.
+  final void Function(String url) onLinkTap;
 
   /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
