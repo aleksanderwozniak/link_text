@@ -9,13 +9,24 @@ import 'package:url_launcher/url_launcher.dart';
 
 typedef LinkTapHandler = void Function(String);
 
+/// Easy to use text widget, which converts inlined urls into clickable links.
+/// Allows custom styling.
 class LinkText extends StatefulWidget {
+  /// Text, which may contain inlined urls.
   final String text;
+
+  /// Style of the non-url part of supplied text.
   final TextStyle textStyle;
+
+  /// Style of the url part of supplied text.
   final TextStyle linkStyle;
+
+  /// Determines how the text is aligned.
   final TextAlign textAlign;
+  
   final LinkTapHandler onLinkTap;
 
+  /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
     Key key,
     @required this.text,
@@ -63,9 +74,9 @@ class _LinkTextState extends State<LinkText> {
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
-    final textStyle = this.widget.textStyle ?? themeData.textTheme.body1;
+    final textStyle = this.widget.textStyle ?? themeData.textTheme.bodyText2;
     final linkStyle = this.widget.linkStyle ??
-        themeData.textTheme.body1.copyWith(
+        themeData.textTheme.bodyText2.copyWith(
           color: themeData.accentColor,
           decoration: TextDecoration.underline,
         );
@@ -85,7 +96,8 @@ class _LinkTextState extends State<LinkText> {
 
       if (i < links.length) {
         final link = links.elementAt(i).group(0);
-        final recognizer = TapGestureRecognizer()..onTap = () => _launchUrl(link);
+        final recognizer = TapGestureRecognizer()
+          ..onTap = () => _launchUrl(link);
 
         _gestureRecognizers.add(recognizer);
         textSpans.add(
@@ -100,8 +112,8 @@ class _LinkTextState extends State<LinkText> {
       }
     });
 
-    return RichText(
-      text: TextSpan(children: textSpans),
+    return Text.rich(
+      TextSpan(children: textSpans),
       textAlign: widget.textAlign,
     );
   }

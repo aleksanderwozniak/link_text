@@ -1,11 +1,12 @@
 name: link_text
-description: Easy to use text widget for Flutter apps, which converts inlined urls into working, clickable links. Allows for custom styling. 
-version: 0.1.2
+description: Easy to use text widget for Flutter apps, which converts inlined urls into working, clickable links. Allows custom styling. 
+version: 0.1.4
 author: Aleksander Woźniak <aleksanderwozniak96@gmail.com>
 homepage: https://github.com/aleksanderwozniak/link_text
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
