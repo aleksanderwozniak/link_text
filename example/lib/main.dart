@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final String _text =
-      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https://www.google.de/search?q=flutter+&oq=flutter sit amet';
+      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https:/google.com/search?q=flutter+&oq=flutter sit amet';
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle().copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12.0),
-        LinkText(text: _text, textAlign: TextAlign.center, trimParams: true,),
+        LinkText(text: _text, textAlign: TextAlign.center, shouldTrimParams: true,),
       ],
     );
   }

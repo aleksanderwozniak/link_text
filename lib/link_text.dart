@@ -25,7 +25,7 @@ class LinkText extends StatefulWidget {
   /// if true it will cut off all visible links after '?'.
   /// This is only for better readability. When executing the url
   /// the link with all params stays the same.
-  final bool trimParams;
+  final bool shouldTrimParams;
 
   /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
@@ -34,7 +34,7 @@ class LinkText extends StatefulWidget {
     this.textStyle,
     this.linkStyle,
     this.textAlign = TextAlign.start,
-    this.trimParams = false,
+    this.shouldTrimParams = false,
   })  : assert(text != null),
         super(key: key);
 
@@ -99,7 +99,7 @@ class _LinkTextState extends State<LinkText> {
         final recognizer = TapGestureRecognizer()
           ..onTap = () => _launchUrl(link);
 
-        if (widget.trimParams) {
+        if (widget.shouldTrimParams) {
           newLinkText = _shortenRegex.firstMatch(link)?.group(1);
         }
 
