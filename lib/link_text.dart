@@ -22,10 +22,14 @@ class LinkText extends StatefulWidget {
   /// Determines how the text is aligned.
   final TextAlign textAlign;
 
-  /// if true it will cut off all visible links after '?'.
+  /// If true, this will cut off all visible links after '?'.
   /// This is only for better readability. When executing the url
   /// the link with all params stays the same.
   final bool shouldTrimParams;
+
+  /// Overrides default behavior when tapping on links.
+  /// Provides the url that was tapped.
+  final void Function(String url) onLinkTap;
 
   /// Creates a [LinkText] widget, used for inlined urls.
   const LinkText({
@@ -35,6 +39,7 @@ class LinkText extends StatefulWidget {
     this.linkStyle,
     this.textAlign = TextAlign.start,
     this.shouldTrimParams = false,
+    this.onLinkTap,
   })  : assert(text != null),
         super(key: key);
 
@@ -62,6 +67,11 @@ class _LinkTextState extends State<LinkText> {
   }
 
   void _launchUrl(String url) async {
+    if (widget.onLinkTap != null) {
+      widget.onLinkTap(url);
+      return;
+    }
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {

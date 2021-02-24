@@ -1,3 +1,7 @@
+## [0.1.5]
+
+* Added `onLinkTap` callback that allows overriding the default tap handler
+
 ## [0.1.4]
 
 * Migrated to AndroidX

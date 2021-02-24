@@ -20,6 +20,8 @@ Widget build(BuildContext context) {
       child: LinkText(
         text: _text,
         textAlign: TextAlign.center,
+        // You can optionally handle link tap event by yourself
+        // onLinkTap: (url) => ...
       ),
     ),
   );
@@ -32,6 +34,6 @@ Add to pubspec.yaml:
 
 ```yaml
 dependencies:
-  link_text: ^0.1.4
+  link_text: ^0.1.5
 ```
 For more info, check out [example project](https://github.com/aleksanderwozniak/link_text/tree/master/example).
