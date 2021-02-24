@@ -1,7 +1,5 @@
-//  Copyright (c) 2019 Aleksander Woźniak
-//  Licensed under Apache License v2.0
-
-library link_text;
+// Copyright 2019 Aleksander Woźniak
+// SPDX-License-Identifier: Apache-2.0
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +20,9 @@ class LinkText extends StatefulWidget {
   /// Determines how the text is aligned.
   final TextAlign textAlign;
 
-  /// If true, this will cut off all visible links after '?'.
-  /// This is only for better readability. When executing the url
-  /// the link with all params stays the same.
+  /// If true, this will cut off all visible params after '?'.
+  /// This is only for improved readability. When executing the url
+  /// the link with all params will stay the same.
   final bool shouldTrimParams;
 
   /// Overrides default behavior when tapping on links.
@@ -48,17 +46,10 @@ class LinkText extends StatefulWidget {
 }
 
 class _LinkTextState extends State<LinkText> {
-  List<TapGestureRecognizer> _gestureRecognizers;
-  final RegExp _regex = RegExp(
+  final _gestureRecognizers = <TapGestureRecognizer>[];
+  final _regex = RegExp(
       r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\,+.~#?&//=]*)");
-
-  final _shortenRegex = RegExp(r"(.*)\?");
-
-  @override
-  void initState() {
-    super.initState();
-    _gestureRecognizers = <TapGestureRecognizer>[];
-  }
+  final _shortenedRegex = RegExp(r"(.*)\?");
 
   @override
   void dispose() {
@@ -82,8 +73,8 @@ class _LinkTextState extends State<LinkText> {
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
-    final textStyle = this.widget.textStyle ?? themeData.textTheme.bodyText2;
-    final linkStyle = this.widget.linkStyle ??
+    final textStyle = widget.textStyle ?? themeData.textTheme.bodyText2;
+    final linkStyle = widget.linkStyle ??
         themeData.textTheme.bodyText2.copyWith(
           color: themeData.accentColor,
           decoration: TextDecoration.underline,
@@ -104,19 +95,19 @@ class _LinkTextState extends State<LinkText> {
 
       if (i < links.length) {
         final link = links.elementAt(i).group(0);
-        var newLinkText;
+        var shortenedLink;
 
         final recognizer = TapGestureRecognizer()
           ..onTap = () => _launchUrl(link);
 
         if (widget.shouldTrimParams) {
-          newLinkText = _shortenRegex.firstMatch(link)?.group(1);
+          shortenedLink = _shortenedRegex.firstMatch(link)?.group(1);
         }
 
         _gestureRecognizers.add(recognizer);
         textSpans.add(
           TextSpan(
-            text: newLinkText ?? link,
+            text: shortenedLink ?? link,
             style: linkStyle,
             recognizer: recognizer,
           ),

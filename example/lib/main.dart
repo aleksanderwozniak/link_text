@@ -1,5 +1,5 @@
-//  Copyright (c) 2019 Aleksander Woźniak
-//  Licensed under Apache License v2.0
+// Copyright 2019 Aleksander Woźniak
+// SPDX-License-Identifier: Apache-2.0
 
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
@@ -29,8 +29,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String _text =
-      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https:/google.com/search?q=flutter+&oq=flutter sit amet';
+  final _text =
+      'Lorem ipsum https://flutter.dev\nhttps://pub.dev dolor https://google.com/search?q=flutter+&oq=flutter sit amet';
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle().copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12.0),
-        Text(_text, textAlign: TextAlign.center),
+        Text(
+          _text,
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
@@ -83,7 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle().copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12.0),
-        LinkText(text: _text, textAlign: TextAlign.center),
+        LinkText(
+          text: _text,
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
@@ -93,12 +99,16 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
-          'LinkText Widget with disabled URL parameters',
+          'LinkText Widget with trimmed URL parameters',
           textAlign: TextAlign.center,
           style: TextStyle().copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12.0),
-        LinkText(text: _text, textAlign: TextAlign.center, shouldTrimParams: true,),
+        LinkText(
+          text: _text,
+          textAlign: TextAlign.center,
+          shouldTrimParams: true,
+        ),
       ],
     );
   }
