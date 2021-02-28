@@ -1,3 +1,7 @@
+## [0.1.6]
+
+* Added `shouldTrimParams` property that improves readability of longer links
+
 ## [0.1.5]
 
 * Added `onLinkTap` callback that allows overriding the default tap handler
