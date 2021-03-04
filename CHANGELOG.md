@@ -1,3 +1,8 @@
+## [0.2.0]
+
+* Migrated to null safety
+* `text` is no longer a named parameter, making LinkText closer in use to Text widget
+
 ## [0.1.6]
 
 * Added `shouldTrimParams` property that improves readability of longer links
