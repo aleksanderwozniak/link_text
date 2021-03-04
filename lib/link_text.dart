@@ -12,10 +12,10 @@ class LinkText extends StatefulWidget {
   final String text;
 
   /// Style of the non-url part of supplied text.
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// Style of the url part of supplied text.
-  final TextStyle linkStyle;
+  final TextStyle? linkStyle;
 
   /// Determines how the text is aligned.
   final TextAlign textAlign;
@@ -27,19 +27,18 @@ class LinkText extends StatefulWidget {
 
   /// Overrides default behavior when tapping on links.
   /// Provides the url that was tapped.
-  final void Function(String url) onLinkTap;
+  final void Function(String url)? onLinkTap;
 
   /// Creates a [LinkText] widget, used for inlined urls.
-  const LinkText({
-    Key key,
-    @required this.text,
+  const LinkText(
+    this.text, {
+    Key? key,
     this.textStyle,
     this.linkStyle,
     this.textAlign = TextAlign.start,
     this.shouldTrimParams = false,
     this.onLinkTap,
-  })  : assert(text != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _LinkTextState createState() => _LinkTextState();
@@ -59,7 +58,7 @@ class _LinkTextState extends State<LinkText> {
 
   void _launchUrl(String url) async {
     if (widget.onLinkTap != null) {
-      widget.onLinkTap(url);
+      widget.onLinkTap!(url);
       return;
     }
 
@@ -75,7 +74,7 @@ class _LinkTextState extends State<LinkText> {
     final themeData = Theme.of(context);
     final textStyle = widget.textStyle ?? themeData.textTheme.bodyText2;
     final linkStyle = widget.linkStyle ??
-        themeData.textTheme.bodyText2.copyWith(
+        themeData.textTheme.bodyText2?.copyWith(
           color: themeData.accentColor,
           decoration: TextDecoration.underline,
         );
@@ -94,7 +93,7 @@ class _LinkTextState extends State<LinkText> {
       textSpans.add(TextSpan(text: part, style: textStyle));
 
       if (i < links.length) {
-        final link = links.elementAt(i).group(0);
+        final link = links.elementAt(i).group(0) ?? '';
         var shortenedLink;
 
         final recognizer = TapGestureRecognizer()
