@@ -57,11 +57,9 @@ class _LinkTextState extends State<LinkText> {
   }
 
   void _launchUrl(String url) async {
-    print(url.startsWith('http'));
     if (!url.startsWith('http')){
      url = "https://" + url; 
     }
-    print("url $url");
     if (widget.onLinkTap != null) {
       widget.onLinkTap!(url);
       return;
