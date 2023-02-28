@@ -63,7 +63,7 @@ class _LinkTextState extends State<LinkText> {
     }
 
     if (await canLaunch(url)) {
-      await launch(url);
+      await  launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }
