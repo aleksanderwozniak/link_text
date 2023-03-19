@@ -82,7 +82,8 @@ class _LinkTextState extends State<LinkText> {
     final links = _regex.allMatches(widget.text);
 
     if (links.isEmpty) {
-      return Text(widget.text, style: textStyle);
+      return Text(widget.text, style: textStyle,
+                 textAlign: widget.textAlign);
     }
 
     final textParts = widget.text.split(_regex);
