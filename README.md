@@ -34,6 +34,6 @@ Add to pubspec.yaml:
 
 ```yaml
 dependencies:
-  link_text: ^0.2.0
+  link_text: ^0.2.1
 ```
 For more info, check out [example project](https://github.com/aleksanderwozniak/link_text/tree/master/example).

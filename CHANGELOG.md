@@ -1,3 +1,8 @@
+## [0.2.1]
+
+* Upgraded to Dart 3
+* Upgraded deprecated methods
+
 ## [0.2.0]
 
 * Migrated to null safety
