@@ -62,10 +62,12 @@ class _LinkTextState extends State<LinkText> {
       return;
     }
 
-    if (await canLaunch(url)) {
-      await  launchUrl(Uri.parse(url));
+    final uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $uri';
     }
   }
 
@@ -82,8 +84,7 @@ class _LinkTextState extends State<LinkText> {
     final links = _regex.allMatches(widget.text);
 
     if (links.isEmpty) {
-      return Text(widget.text, style: textStyle,
-                 textAlign: widget.textAlign);
+      return Text(widget.text, style: textStyle, textAlign: widget.textAlign);
     }
 
     final textParts = widget.text.split(_regex);
@@ -97,8 +98,7 @@ class _LinkTextState extends State<LinkText> {
         final link = links.elementAt(i).group(0) ?? '';
         var shortenedLink;
 
-        final recognizer = TapGestureRecognizer()
-          ..onTap = () => _launchUrl(link);
+        final recognizer = TapGestureRecognizer()..onTap = () => _launchUrl(link);
 
         if (widget.shouldTrimParams) {
           shortenedLink = _shortenedRegex.firstMatch(link)?.group(1);
