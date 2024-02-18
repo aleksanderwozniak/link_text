@@ -47,7 +47,7 @@ class LinkText extends StatefulWidget {
 class _LinkTextState extends State<LinkText> {
   final _gestureRecognizers = <TapGestureRecognizer>[];
   final _regex = RegExp(
-      r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\,+.~#?&//=]*)");
+      r"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\,+.~#?&//=]*)");
   final _shortenedRegex = RegExp(r"(.*)\?");
 
   @override
@@ -57,6 +57,9 @@ class _LinkTextState extends State<LinkText> {
   }
 
   void _launchUrl(String url) async {
+    if (!url.startsWith('http')){
+     url = "https://" + url; 
+    }
     if (widget.onLinkTap != null) {
       widget.onLinkTap!(url);
       return;
